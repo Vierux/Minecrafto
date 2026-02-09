@@ -1,0 +1,20 @@
+[
+  {
+    "uuid": "3c00b58d-a066-4f52-a2b7-615641dcbe00",
+    "name": "Server",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "1099cc56-730a-41c6-a2dc-692c3c29a016",
+    "name": "Vierux",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "a1882771-217b-400b-9fa8-b1e0a8eac6dc",
+    "name": "Luzarkk",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]
