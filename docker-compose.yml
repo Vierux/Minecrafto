@@ -3,8 +3,6 @@ services:
     build: ./mc-server
     container_name: mc-server
     restart: unless-stopped
-    networks:
-      - proxy
     ports:
       - "25575:25575/tcp"
     volumes:
@@ -25,10 +23,6 @@ services:
       - servercache:/servercache
     environment:
       TZ: "Europe/Madrid"
-
-networks:
-  proxy:
-    external: true
 
 volumes:
   serverfiles:
