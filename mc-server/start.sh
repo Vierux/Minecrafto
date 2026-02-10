@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 
 get_latest_spigot() {
-  # Nota: Spigot no tiene una API oficial de descarga directa tan sencilla como Paper.
-  # Aquí definimos una versión fija o un link de descarga directa.
-  SPIGOT_URL="https://download.getbukkit.org/spigot/spigot-1.21.8.jar"
+  SPIGOT_URL="https://download.getbukkit.org/spigot/spigot-1.20.1.jar"
   
-  printf "%s\n" "Descargando Spigot..."
-  wget --quiet -O spigot.jar -T 60 $SPIGOT_URL
+  printf "%s\n" "Descargando Spigot con User-Agent..."
+  wget --user-agent="Mozilla/5.0" --quiet -O spigot.jar -T 60 "$SPIGOT_URL"
   
+  FILESIZE=$(stat -c%s "spigot.jar")
+  if [ $FILESIZE -lt 1000000 ]; then
+      echo "Error: El archivo descargado es demasiado pequeño. Probablemente la descarga fue bloqueada."
+      exit 1
+  fi
+
   sha256sum spigot.jar > papersha256.txt
 }
-
 AIKAR_FLAGS_CONSTANT="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true"
 ZGC_FLAGS_CONSTANT="-XX:+UseZGC -XX:+IgnoreUnrecognizedVMOptions -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:-OmitStackTraceInFastThrow -XX:+ShowCodeDetailsInExceptionMessages -XX:+DisableExplicitGC -XX:-UseParallelGC -XX:-UseParallelOldGC -XX:+PerfDisableSharedMem -XX:-ZUncommit -XX:ZUncommitDelay=300 -XX:ZCollectionInterval=5 -XX:ZAllocationSpikeTolerance=2.0 -XX:+AlwaysPreTouch -XX:+UseTransparentHugePages -XX:LargePageSizeInBytes=2M -XX:+UseLargePages -XX:+ParallelRefProcEnabled"
 
