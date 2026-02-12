@@ -1,12 +1,9 @@
 services:
   mc-server:
-    build:
-      context: ./mc-server
-      network: host
+    build: ./mc-server
     container_name: mc-server
     restart: unless-stopped
     ports:
-      - "25565:25565/tcp"
       - "25575:25575/tcp"
     volumes:
       - serverfiles:/usr/src/serverfiles
