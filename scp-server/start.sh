@@ -5,7 +5,6 @@ if [[ -z "$SCP_PASSWORD" ]]; then
 fi
 
 # here we set up the config for openSSH.
-mkdir -p /var/run/sshd
 echo "root:$SCP_PASSWORD" | chpasswd
 sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 
