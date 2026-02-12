@@ -1,6 +1,8 @@
 services:
   mc-server:
-    build: ./mc-server
+    build:
+      context: ./mc-server
+      network: host
     container_name: mc-server
     restart: unless-stopped
     ports:
