@@ -83,6 +83,12 @@ if [[ -n "$ENABLE_CONFIG_UPDATE" ]]; then
   cp -R /serverfiles /usr/src/
 fi
 
+# Aceptar la EULA automáticamente si la variable está definida
+if [[ "$EULA" == "TRUE" ]]; then
+  echo "eula=true" > /usr/src/serverfiles/eula.txt
+  printf "%s\n" "EULA aceptada mediante variable de entorno."
+fi
+
 # Make sure we are in the file volume
 cd /usr/src/serverfiles/ || exit
 

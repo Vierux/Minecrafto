@@ -24,6 +24,7 @@ services:
       - servercache:/servercache
     environment:
       TZ: "Europe/Madrid"
+      SCP_PASSWORD: ${SCP_PASSWORD}
 
 volumes:
   serverfiles:
