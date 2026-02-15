@@ -12,6 +12,7 @@ services:
     environment:
       EULA: "TRUE"
       TZ: "Europe/Madrid"
+      RAM: ${RAM}
 
   scp-server:
     build: ./scp-server
