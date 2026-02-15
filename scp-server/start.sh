@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ -z "$SCP_PASSWORD" ]]; then
-  export SCP_PASSWORD=raspberry
+  echo "ERROR: La variable SCP_PASSWORD no está definida."
+  exit 1
 fi
 
 # here we set up the config for openSSH.
